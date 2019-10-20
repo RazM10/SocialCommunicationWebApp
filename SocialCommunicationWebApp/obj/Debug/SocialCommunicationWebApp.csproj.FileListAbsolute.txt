@@ -103,3 +103,5 @@ E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicati
 E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.csproj.CopyComplete
 E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.dll
 E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.pdb
+E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.Migrations.ConnectionString_Add_v1.resources
+E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.csproj.GenerateResource.cache
