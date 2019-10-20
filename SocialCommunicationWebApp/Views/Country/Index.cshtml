@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SocialCommunicationWebApp.Models.Country>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Create New", "New", "Country")
+<table id="country" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            @*<td>@c.Name</td>*@
+            <td>@Html.ActionLink(c.Name, "Edit", "Country", new { id = c.Id }, null)</td>
+            <td><button data-customer-id="@c.Id" class="btn-link">Delete</button></td>
+        </tr>
+    }
+    </tbody>
+</table>

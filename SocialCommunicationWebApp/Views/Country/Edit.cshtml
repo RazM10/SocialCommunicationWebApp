@@ -1,0 +1,19 @@
+﻿@model SocialCommunicationWebApp.Models.Country
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Country"))
+{
+    @Html.ValidationSummary(true, "Please fix the Errors")
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @*@Html.ValidationMessageFor(x => x.Name)*@
+    </div>
+
+    @Html.HiddenFor(x => x.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
