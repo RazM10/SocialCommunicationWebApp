@@ -1,0 +1,31 @@
+﻿@model SocialCommunicationWebApp.ViewModels.UserCountry_ViewModel
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New</h2>
+@using (Html.BeginForm("New", "User"))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.User.Name)
+        @Html.TextBoxFor(x => x.User.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.User.Password)
+        @Html.PasswordFor(x => x.User.Password, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.User.Email)
+        @Html.TextBoxFor(x => x.User.Email, new { @class = "form-control",type="email",placeholder="example@gmail.com" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.User.CountryId)
+        @Html.DropDownListFor(x => x.User.CountryId, new SelectList(Model.Countries, "Id", "Name"), "--Select--", new { @class = "form-control" })
+    </div>
+
+    @*@Html.HiddenFor(x => x.Customer.Id)*@
+    <button type="submit" class="btn btn-primary">Save</button>
+}

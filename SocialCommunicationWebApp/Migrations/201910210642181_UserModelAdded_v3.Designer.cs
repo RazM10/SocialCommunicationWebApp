@@ -7,13 +7,13 @@ namespace SocialCommunicationWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UserModelAdded_v2 : IMigrationMetadata
+    public sealed partial class UserModelAdded_v3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserModelAdded_v2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserModelAdded_v3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910210621157_UserModelAdded_v2"; }
+            get { return "201910210642181_UserModelAdded_v3"; }
         }
         
         string IMigrationMetadata.Source

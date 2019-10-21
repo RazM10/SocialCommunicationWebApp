@@ -3,7 +3,7 @@ namespace SocialCommunicationWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UserModelAdded_v2 : DbMigration
+    public partial class UserModelAdded_v3 : DbMigration
     {
         public override void Up()
         {
