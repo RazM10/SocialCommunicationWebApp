@@ -61,5 +61,17 @@ namespace SocialCommunicationWebApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Country");
         }
+
+        public ActionResult Delete(int id)
+        {
+            var countryInDb = _context.Countries.SingleOrDefault(c => c.Id == id);
+            if (countryInDb != null)
+            {
+                _context.Countries.Remove(countryInDb);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

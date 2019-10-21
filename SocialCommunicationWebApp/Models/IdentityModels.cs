@@ -21,6 +21,8 @@ namespace SocialCommunicationWebApp.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Country> Countries { get; set; }
+        public DbSet<User> Users { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -19,7 +19,7 @@
         <tr>
             @*<td>@c.Name</td>*@
             <td>@Html.ActionLink(c.Name, "Edit", "Country", new { id = c.Id }, null)</td>
-            <td><button data-customer-id="@c.Id" class="btn-link">Delete</button></td>
+            <td><a href="@Url.Action("Delete")?id=@c.Id" onClick="return confirm('Are you sure?')">Delete</a></td>
         </tr>
     }
     </tbody>
