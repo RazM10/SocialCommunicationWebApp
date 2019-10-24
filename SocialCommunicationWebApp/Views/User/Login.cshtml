@@ -1,0 +1,28 @@
+﻿@model SocialCommunicationWebApp.Models.User
+@{
+    ViewBag.Title = "Login";
+    if (Session["email"] != null)
+    {
+        Response.Redirect("Home");
+    }
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "User"))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type = "email", placeholder = "example@gmail.com" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    </div>
+
+   
+
+    @*@Html.HiddenFor(x => x.Customer.Id)*@
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+

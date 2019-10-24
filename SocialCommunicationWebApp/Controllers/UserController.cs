@@ -50,5 +50,43 @@ namespace SocialCommunicationWebApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "User");
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(User user)
+        {
+            List<User> userList = _context.UsercSet.ToList();
+            foreach (User _user in userList)
+            {
+                if (_user.Email == user.Email && _user.Password == user.Password)
+                {
+                    Session["email"] = user.Email;
+                    Session["password"] = user.Password;
+                    return RedirectToAction("Home", "User");
+                }
+            }
+            return RedirectToAction("Login", "User");
+        }
+
+        public ActionResult Home()
+        {
+            if (Session["email"] != null)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Logout()
+        {
+            Session["email"] = null;
+            Session["password"] = null;
+            return RedirectToAction("Login");
+        }
     }
 }

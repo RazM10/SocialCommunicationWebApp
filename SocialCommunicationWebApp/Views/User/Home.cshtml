@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+@Html.ActionLink("Logout", "Logout", "User")
+<h2>Home</h2>
+<h1>User Mail: @Session["email"].ToString()</h1>
+
