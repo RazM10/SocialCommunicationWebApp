@@ -107,3 +107,4 @@ E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicati
 E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.csproj.GenerateResource.cache
 E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.Migrations.CountryModelAdded_v2.resources
 E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.Migrations.UserModelAdded_v3.resources
+E:\Files\bitm c\bitm cls\MySelf\VS19\SocialCommunicationWebApp\SocialCommunicationWebApp\obj\Debug\SocialCommunicationWebApp.Migrations.FriendModelAdded_v4.resources

@@ -187,9 +187,14 @@
     <Compile Include="Migrations\201910210642181_UserModelAdded_v3.Designer.cs">
       <DependentUpon>201910210642181_UserModelAdded_v3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910251754511_FriendModelAdded_v4.cs" />
+    <Compile Include="Migrations\201910251754511_FriendModelAdded_v4.Designer.cs">
+      <DependentUpon>201910251754511_FriendModelAdded_v4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\User.cs" />
@@ -286,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910210642181_UserModelAdded_v3.resx">
       <DependentUpon>201910210642181_UserModelAdded_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910251754511_FriendModelAdded_v4.resx">
+      <DependentUpon>201910251754511_FriendModelAdded_v4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
