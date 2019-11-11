@@ -76,7 +76,8 @@ namespace SocialCommunicationWebApp.Controllers
         {
             if (Session["email"] != null)
             {
-                return View();
+                List<User> users = _context.UsercSet.ToList();
+                return View(users);
             }
 
             return RedirectToAction("Login");

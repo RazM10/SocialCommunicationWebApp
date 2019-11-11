@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<SocialCommunicationWebApp.Models.User>
 @{
     ViewBag.Title = "Home";
 }
@@ -6,4 +6,25 @@
 @Html.ActionLink("Logout", "Logout", "User")
 <h2>Home</h2>
 <h1>User Mail: @Session["email"].ToString()</h1>
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Name</td>
+                @*<td>@Html.ActionLink(c.Name, "Edit", "Customer", new { id = c.Id }, null)</td>*@
+                <td>@c.Email</td>
+                @*<td>@Html.ActionLink("Add Friend", "FriendRequest", "Friend", new { id = c.Id }, null)</td>*@
+                <td><a href="@Url.Action("FriendRequest","Friend",new {id=c.Id})" class="btn btn-primary">Add Friend</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
 
