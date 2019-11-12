@@ -8,8 +8,8 @@ namespace SocialCommunicationWebApp.Migrations
         public override void Up()
         {
             CreateTable(
-                    "dbo.Friends",
-                    c => new
+                "dbo.Friends",
+                c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         UserFromId = c.Int(nullable: false),
@@ -17,20 +17,12 @@ namespace SocialCommunicationWebApp.Migrations
                         Accept = c.Int(nullable: false),
                         Date = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.UserFromId)
-                .ForeignKey("dbo.Users", t => t.UserToId)
-                .Index(t => t.UserFromId)
-                .Index(t => t.UserToId);
-
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Friends", "UserFromId", "dbo.Users");
-            DropIndex("dbo.Friends", new[] { "UserFromId" });
-            DropForeignKey("dbo.Friends", "UserToId", "dbo.Users");
-            DropIndex("dbo.Friends", new[] { "UserToId" });
             DropTable("dbo.Friends");
         }
     }

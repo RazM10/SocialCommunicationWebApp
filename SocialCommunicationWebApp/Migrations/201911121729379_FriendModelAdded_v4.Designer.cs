@@ -13,7 +13,7 @@ namespace SocialCommunicationWebApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201910251754511_FriendModelAdded_v4"; }
+            get { return "201911121729379_FriendModelAdded_v4"; }
         }
         
         string IMigrationMetadata.Source

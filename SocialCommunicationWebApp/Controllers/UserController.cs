@@ -76,7 +76,12 @@ namespace SocialCommunicationWebApp.Controllers
         {
             if (Session["email"] != null)
             {
+                String email = (string) Session["email"];
+
+                User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
                 List<User> users = _context.UsercSet.ToList();
+
+                users.Remove(user);
                 return View(users);
             }
 

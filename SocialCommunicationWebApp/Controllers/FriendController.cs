@@ -23,23 +23,40 @@ namespace SocialCommunicationWebApp.Controllers
         // GET: Friend
         public ActionResult Index()
         {
-            List<User> users =_context.UsercSet.ToList();
-            return View(users);
+            if (Session["email"] != null)
+            {
+                List<User> users = _context.UsercSet.ToList();
+                return View(users);
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+
         }
 
         public ActionResult FriendRequest(int id)
         {
-            Friend friend=new Friend();
-            string email = (string) Session["email"];
+            Friend friend = new Friend();
+            string email = (string)Session["email"];
             User user = _context.UsercSet.SingleOrDefault(u => u.Email == email);
 
             if (user != null)
             {
                 friend.UserFromId = user.Id;
                 friend.UserToId = id;
+                friend.Accept = 0;
+                friend.Date = DateTime.Now.ToString("yyyy-MM-dd");
+
+                _context.Friends.Add(friend);
+                _context.SaveChanges();
+                return RedirectToAction("Home", "User");
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
             }
 
-            return RedirectToAction("Index");
         }
     }
 }
