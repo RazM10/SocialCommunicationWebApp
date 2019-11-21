@@ -88,6 +88,46 @@ namespace SocialCommunicationWebApp.Controllers
             return RedirectToAction("Login");
         }
 
+        public ActionResult FriendRequest()
+        {
+            if (Session["email"] != null)
+            {
+                String email = (string)Session["email"];
+
+                User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
+
+                List<Friend> friends = _context.Friends.ToList();
+                List<User> users = _context.UsercSet.ToList();
+
+                List<Friend> friendList=new List<Friend>();
+                List<String> fromFriendNameList=new List<string>();
+
+                foreach (Friend friend in friends)
+                {
+                    if (friend.UserToId == user.Id)
+                    {
+                        friendList.Add(friend);
+
+                        int id = friend.UserFromId;
+                        User user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
+
+                        fromFriendNameList.Add(user1.Name);
+                    }
+                }
+
+                UserFriend_ViewModel userFriendViewModel=new UserFriend_ViewModel()
+                {
+                    User = user,
+                    Friends = friendList,
+                    FromFriendNameList = fromFriendNameList
+                };
+
+                return View(userFriendViewModel);
+            }
+
+            return RedirectToAction("Login");
+        }
+
         public ActionResult Logout()
         {
             Session["email"] = null;

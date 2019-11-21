@@ -1,0 +1,34 @@
+﻿@model SocialCommunicationWebApp.ViewModels.UserFriend_ViewModel
+@{
+    ViewBag.Title = "FriendRequest";
+}
+
+@Html.ActionLink("Logout", "Logout", "User")
+<h2>FriendRequest</h2>
+
+<h1>User Mail: @Session["email"].ToString()</h1>
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var c in Model.Friends)
+        {
+            <tr>
+                <td>@c.Name</td>
+                
+                
+            </tr>
+        }*@
+    @for (int i = 0; i < Model.Friends.Count; i++)
+    {
+        <tr>
+            <td>@Model.FromFriendNameList[i]</td>
+            <td>@Model.Friends[i].Date</td>
+        </tr>
+    }
+    </tbody>
+</table>

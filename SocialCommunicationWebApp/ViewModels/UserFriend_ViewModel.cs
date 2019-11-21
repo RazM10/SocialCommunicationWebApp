@@ -10,5 +10,6 @@ namespace SocialCommunicationWebApp.ViewModels
     {
         public User User { get; set; }
         public List<Friend> Friends { get; set; }
+        public List<String> FromFriendNameList { get; set; }
     }
 }
