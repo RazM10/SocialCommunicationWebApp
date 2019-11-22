@@ -7,16 +7,17 @@
 <h2>FriendRequest</h2>
 
 <h1>User Mail: @Session["email"].ToString()</h1>
+<h2>Friend List of: @Model.User.Name</h2>
 <table id="customers" class="table table-bordered table-hover">
     <thead>
-        <tr>
-            <th>From</th>
-            <th>Date</th>
-            <th>Action</th>
-        </tr>
+    <tr>
+        <th>From</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
     </thead>
     <tbody>
-        @*@foreach (var c in Model.Friends)
+    @*@foreach (var c in Model.Friends)
         {
             <tr>
                 <td>@c.Name</td>
@@ -29,7 +30,8 @@
         <tr>
             <td>@Model.FromFriendNameList[i]</td>
             <td>@Model.Friends[i].Date</td>
-            <td><a href="@Url.Action("AcceptFriendRequest","Friend",new {id=Model.Friends[i].Id})" class="btn btn-primary">Accept Request</a></td>
+            <td>@Model.Friends[i].Accept</td>
+            @*<td><a href="@Url.Action("AcceptFriendRequest","Friend",new {id=Model.Friends[i].Id})" class="btn btn-primary">Accept Request</a></td>*@
 
         </tr>
     }

@@ -269,6 +269,7 @@
     <Content Include="Views\User\Home.cshtml" />
     <Content Include="Views\Friend\Index.cshtml" />
     <Content Include="Views\User\FriendRequest.cshtml" />
+    <Content Include="Views\User\FriendsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

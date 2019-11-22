@@ -82,6 +82,22 @@ namespace SocialCommunicationWebApp.Controllers
                 List<User> users = _context.UsercSet.ToList();
 
                 users.Remove(user);
+
+                List<Friend> friends = _context.Friends.ToList();
+                foreach (Friend friend in friends)
+                {
+                    if (friend.UserFromId == user.Id)
+                    {
+                        User user1 = _context.UsercSet.SingleOrDefault(x => x.Id == friend.UserToId);
+                        users.Remove(user1);
+                    }
+                    else if (friend.UserToId == user.Id)
+                    {
+                        User user1 = _context.UsercSet.SingleOrDefault(x => x.Id == friend.UserFromId);
+                        users.Remove(user1);
+                    }
+                }
+
                 return View(users);
             }
 
@@ -104,7 +120,7 @@ namespace SocialCommunicationWebApp.Controllers
 
                 foreach (Friend friend in friends)
                 {
-                    if (friend.UserToId == user.Id)
+                    if (friend.UserToId == user.Id & friend.Accept==0)
                     {
                         friendList.Add(friend);
 
@@ -125,6 +141,54 @@ namespace SocialCommunicationWebApp.Controllers
                 return View(userFriendViewModel);
             }
 
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult FriendsList()
+        {
+            if (Session["email"] != null)
+            {
+                String email = (string) Session["email"];
+
+                User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
+
+                List<Friend> friends = _context.Friends.ToList();
+                List<User> users = _context.UsercSet.ToList();
+
+                List<Friend> friendList = new List<Friend>();
+                List<String> fromFriendNameList = new List<string>();
+
+                foreach (Friend friend in friends)
+                {
+                    if ((friend.UserToId == user.Id || friend.UserFromId==user.Id) & friend.Accept == 1)
+                    {
+                        friendList.Add(friend);
+                        User user1=new User();
+                        if (friend.UserToId == user.Id)
+                        {
+                            int id = friend.UserFromId;
+                            user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
+                        }
+                        else
+                        {
+                            int id = friend.UserToId;
+                            user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
+                        }
+                        
+
+                        fromFriendNameList.Add(user1.Name);
+                    }
+                }
+
+                UserFriend_ViewModel userFriendViewModel = new UserFriend_ViewModel()
+                {
+                    User = user,
+                    Friends = friendList,
+                    FromFriendNameList = fromFriendNameList
+                };
+
+                return View(userFriendViewModel);
+            }
             return RedirectToAction("Login");
         }
 

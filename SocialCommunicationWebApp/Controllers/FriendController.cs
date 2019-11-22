@@ -58,5 +58,13 @@ namespace SocialCommunicationWebApp.Controllers
             }
 
         }
+
+        public ActionResult AcceptFriendRequest(int id)
+        {
+            Friend friendInDb = _context.Friends.SingleOrDefault(f => f.Id == id);
+            if (friendInDb != null) friendInDb.Accept = 1;
+            _context.SaveChanges();
+            return RedirectToAction("Home", "User");
+        }
     }
 }
