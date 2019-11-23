@@ -98,6 +98,11 @@ namespace SocialCommunicationWebApp.Controllers
                     }
                 }
 
+                UserFriend_ViewModel userFriendViewModel = CountFriendRequests();
+                ViewBag.FrendRequestNumbers=userFriendViewModel.Friends.Count;
+                UserFriend_ViewModel userFriendViewModel2 = CountFriendInList();
+                ViewBag.NumberOfFriends = userFriendViewModel2.Friends.Count;
+
                 return View(users);
             }
 
@@ -108,36 +113,7 @@ namespace SocialCommunicationWebApp.Controllers
         {
             if (Session["email"] != null)
             {
-                String email = (string)Session["email"];
-
-                User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
-
-                List<Friend> friends = _context.Friends.ToList();
-                List<User> users = _context.UsercSet.ToList();
-
-                List<Friend> friendList=new List<Friend>();
-                List<String> fromFriendNameList=new List<string>();
-
-                foreach (Friend friend in friends)
-                {
-                    if (friend.UserToId == user.Id & friend.Accept==0)
-                    {
-                        friendList.Add(friend);
-
-                        int id = friend.UserFromId;
-                        User user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
-
-                        fromFriendNameList.Add(user1.Name);
-                    }
-                }
-
-                UserFriend_ViewModel userFriendViewModel=new UserFriend_ViewModel()
-                {
-                    User = user,
-                    Friends = friendList,
-                    FromFriendNameList = fromFriendNameList
-                };
-
+                UserFriend_ViewModel userFriendViewModel = CountFriendRequests();
                 return View(userFriendViewModel);
             }
 
@@ -197,6 +173,84 @@ namespace SocialCommunicationWebApp.Controllers
             Session["email"] = null;
             Session["password"] = null;
             return RedirectToAction("Login");
+        }
+
+        public UserFriend_ViewModel CountFriendRequests()
+        {
+            String email = (string)Session["email"];
+
+            User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
+
+            List<Friend> friends = _context.Friends.ToList();
+            List<User> users = _context.UsercSet.ToList();
+
+            List<Friend> friendList = new List<Friend>();
+            List<String> fromFriendNameList = new List<string>();
+
+            foreach (Friend friend in friends)
+            {
+                if (friend.UserToId == user.Id & friend.Accept == 0)
+                {
+                    friendList.Add(friend);
+
+                    int id = friend.UserFromId;
+                    User user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
+
+                    fromFriendNameList.Add(user1.Name);
+                }
+            }
+
+            UserFriend_ViewModel userFriendViewModel = new UserFriend_ViewModel()
+            {
+                User = user,
+                Friends = friendList,
+                FromFriendNameList = fromFriendNameList
+            };
+
+            return userFriendViewModel;
+        }
+
+        public UserFriend_ViewModel CountFriendInList()
+        {
+            String email = (string)Session["email"];
+
+            User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
+
+            List<Friend> friends = _context.Friends.ToList();
+            List<User> users = _context.UsercSet.ToList();
+
+            List<Friend> friendList = new List<Friend>();
+            List<String> fromFriendNameList = new List<string>();
+
+            foreach (Friend friend in friends)
+            {
+                if ((friend.UserToId == user.Id || friend.UserFromId == user.Id) & friend.Accept == 1)
+                {
+                    friendList.Add(friend);
+                    User user1 = new User();
+                    if (friend.UserToId == user.Id)
+                    {
+                        int id = friend.UserFromId;
+                        user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
+                    }
+                    else
+                    {
+                        int id = friend.UserToId;
+                        user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
+                    }
+
+
+                    fromFriendNameList.Add(user1.Name);
+                }
+            }
+
+            UserFriend_ViewModel userFriendViewModel = new UserFriend_ViewModel()
+            {
+                User = user,
+                Friends = friendList,
+                FromFriendNameList = fromFriendNameList
+            };
+            return userFriendViewModel;
         }
     }
 }
