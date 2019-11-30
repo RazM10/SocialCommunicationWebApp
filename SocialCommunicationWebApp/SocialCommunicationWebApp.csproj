@@ -172,6 +172,7 @@
     <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,12 +193,17 @@
     <Compile Include="Migrations\201911121729379_FriendModelAdded_v4.Designer.cs">
       <DependentUpon>201911121729379_FriendModelAdded_v4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911301729031_MessageModelAdded_v5.cs" />
+    <Compile Include="Migrations\201911301729031_MessageModelAdded_v5.Designer.cs">
+      <DependentUpon>201911301729031_MessageModelAdded_v5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -270,6 +276,7 @@
     <Content Include="Views\Friend\Index.cshtml" />
     <Content Include="Views\User\FriendRequest.cshtml" />
     <Content Include="Views\User\FriendsList.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911121729379_FriendModelAdded_v4.resx">
       <DependentUpon>201911121729379_FriendModelAdded_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911301729031_MessageModelAdded_v5.resx">
+      <DependentUpon>201911301729031_MessageModelAdded_v5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

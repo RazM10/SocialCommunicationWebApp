@@ -6,6 +6,7 @@
 @Html.ActionLink("Logout", "Logout", "User")<br />
 <p>@Html.ActionLink("Requests", "FriendRequest", "User") (@ViewBag.FrendRequestNumbers)</p>
 <p>@Html.ActionLink("Friends List", "FriendsList", "User") (@ViewBag.NumberOfFriends)</p>
+<p>@Html.ActionLink("Messages", "Index", "Message") (@ViewBag.NumberOfFriends)</p>
 <h2>Home</h2>
 <h1>User Mail: @Session["email"].ToString()</h1>
 <table id="customers" class="table table-bordered table-hover">

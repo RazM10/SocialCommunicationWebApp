@@ -1,0 +1,31 @@
+﻿@model SocialCommunicationWebApp.ViewModels.UserFriend_ViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.ActionLink("Logout", "Logout", "User")
+<h2>FriendRequest</h2>
+
+<h1>User Mail: @Session["email"].ToString()</h1>
+<h2>Friend List of: @Model.User.Name</h2>
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    @for (int i = 0; i < Model.Friends.Count; i++)
+        {
+            <tr>
+                <td>@Model.FromFriendNameList[i]</td>
+                <td>@Model.Friends[i].Date</td>
+                <td>@Model.Friends[i].Accept</td>
+                <td><a href="@Url.Action("MessageFromTo","Message",new {id=Model.Friends[i].UserFromId,id2=Model.Friends[i].UserToId})" class="btn btn-primary">Message</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
