@@ -207,6 +207,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Message_ViewModel.cs" />
     <Compile Include="ViewModels\UserCountry_ViewModel.cs" />
     <Compile Include="ViewModels\UserFriend_ViewModel.cs" />
   </ItemGroup>
@@ -277,6 +278,7 @@
     <Content Include="Views\User\FriendRequest.cshtml" />
     <Content Include="Views\User\FriendsList.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\MessageFromTo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

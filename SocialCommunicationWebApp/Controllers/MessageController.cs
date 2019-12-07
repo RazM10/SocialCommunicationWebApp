@@ -72,10 +72,52 @@ namespace SocialCommunicationWebApp.Controllers
 
         public ActionResult MessageFromTo(int id, int id2)
         {
-            //String email = (string)Session["email"];
-            //User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
-            //if (user.Id == id) { }
-            return View();
+            Message_ViewModel messageViewModel=new Message_ViewModel();
+            if (Session["email"] != null)
+            {
+                String email = (string)Session["email"];
+
+                User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
+                if (user.Id == id)
+                {
+                    messageViewModel.FromId = id;
+                    messageViewModel.FromName = user.Name;
+                    User user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id2);
+                    messageViewModel.ToId = id2;
+                    messageViewModel.ToName = user1.Name;
+                }
+                else
+                {
+                    messageViewModel.FromId = id2;
+                    messageViewModel.FromName = user.Name;
+                    User user1 = _context.UsercSet.SingleOrDefault(x => x.Id == id);
+                    messageViewModel.ToId = id;
+                    messageViewModel.ToName = user1.Name;
+                }
+
+                List<String> messageList = new List<String>();
+                List<Message> messages = _context.Messages.ToList();
+                foreach (Message message in messages)
+                {
+                    if ((message.FromId == messageViewModel.FromId & message.ToId == messageViewModel.ToId) | (message.ToId == messageViewModel.FromId & message.FromId == messageViewModel.ToId))
+                    {
+                        messageList.Add(message.MessageDetails);
+                    }
+                }
+
+                messageViewModel.MessageList = messageList;
+                return View(messageViewModel);
+            }
+            return RedirectToAction("Login", "User");
+        }
+
+        [HttpPost]
+        public ActionResult SendingMessage(Message message)
+        {
+            message.Seen = 0;
+            _context.Messages.Add(message);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Message");
         }
     }
 }
