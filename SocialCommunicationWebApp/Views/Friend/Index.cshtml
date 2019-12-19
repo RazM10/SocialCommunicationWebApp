@@ -1,7 +1,31 @@
 ﻿@model IEnumerable<SocialCommunicationWebApp.Models.User>
 @{
     ViewBag.Title = "Index";
+    Layout = "../Shared/_LayoutUser.cshtml";
 }
+
+@*Here start nevbar*@
+@section navBar{
+    <li>
+        <a href="@Url.Action("FriendRequest", "User")">
+            Request <span class="badge badge-light">@ViewBag.FrendRequestNumbers</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("FriendsList", "User")">
+            Friends <span class="badge badge-light">@ViewBag.NumberOfFriends</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Message")">
+            Messages <span class="badge badge-light">@ViewBag.message</span>
+        </a>
+    </li>
+}
+@section navBarRight{
+    <li>@Html.ActionLink("Log Out", "Logout", "User")</li>
+}
+@*End nevbar*@
 
 <h2>Index</h2>
 <table id="customers" class="table table-bordered table-hover">

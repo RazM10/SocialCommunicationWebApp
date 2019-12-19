@@ -1,7 +1,31 @@
 ﻿@model SocialCommunicationWebApp.ViewModels.Message_ViewModel
 @{
     ViewBag.Title = "MessageFromTo";
+    Layout = "../Shared/_LayoutUser.cshtml";
 }
+
+@*Here start nevbar*@
+@section navBar{
+    <li>
+        <a href="@Url.Action("FriendRequest", "User")">
+            Request <span class="badge badge-light">@ViewBag.FrendRequestNumbers</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("FriendsList", "User")">
+            Friends <span class="badge badge-light">@ViewBag.NumberOfFriends</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Message")">
+            Messages <span class="badge badge-light">@ViewBag.message</span>
+        </a>
+    </li>
+}
+@section navBarRight{
+    <li>@Html.ActionLink("Log Out", "Logout", "User")</li>
+}
+@*End nevbar*@
 
 <h2>MessageFromTo</h2>
 
@@ -14,24 +38,24 @@
             <tr>
                 <td>@Model.MessageList[i]</td>
             </tr>
-            if (i!=(Model.MessageList.Count - 1))
+            if (i != (Model.MessageList.Count - 1))
             {
                 <tr>
-                    <td style="text-align: right">@Model.MessageList[i=i+1]</td>
+                    <td style="text-align: right; background: lightskyblue;">@Model.MessageList[i = i + 1]</td>
                 </tr>
             }
         }
     </tbody>
 </table>
 
-    @using (Html.BeginForm("SendingMessage", "Message"))
-    {
-        @Html.HiddenFor(x => x.FromId)
-        @Html.HiddenFor(x => x.ToId)
-        <div class="form-group">
-            @Html.LabelFor(x => x.MessageDetails)
-            @Html.TextAreaFor(x => x.MessageDetails, new { @class = "form-control" })
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    }
+@using (Html.BeginForm("SendingMessage", "Message"))
+{
+    @Html.HiddenFor(x => x.FromId)
+    @Html.HiddenFor(x => x.ToId)
+    <div class="form-group">
+        @Html.LabelFor(x => x.MessageDetails)
+        @Html.TextAreaFor(x => x.MessageDetails, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
 

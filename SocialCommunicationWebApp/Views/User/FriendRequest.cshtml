@@ -1,9 +1,32 @@
 ﻿@model SocialCommunicationWebApp.ViewModels.UserFriend_ViewModel
 @{
     ViewBag.Title = "FriendRequest";
+    Layout = "../Shared/_LayoutUser.cshtml";
 }
 
-@Html.ActionLink("Logout", "Logout", "User")
+@*Here start nevbar*@
+@section navBar{
+    <li>
+        <a href="@Url.Action("FriendRequest", "User")">
+            Request <span class="badge badge-light">@ViewBag.FrendRequestNumbers</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("FriendsList", "User")">
+            Friends <span class="badge badge-light">@ViewBag.NumberOfFriends</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Message")">
+            Messages <span class="badge badge-light">@ViewBag.message</span>
+        </a>
+    </li>
+}
+@section navBarRight{
+    <li>@Html.ActionLink("Log Out", "Logout", "User")</li>
+}
+@*End nevbar*@
+
 <h2>FriendRequest</h2>
 
 <h1>User Mail: @Session["email"].ToString()</h1>

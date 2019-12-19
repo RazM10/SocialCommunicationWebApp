@@ -98,10 +98,7 @@ namespace SocialCommunicationWebApp.Controllers
                     }
                 }
 
-                UserFriend_ViewModel userFriendViewModel = CountFriendRequests();
-                ViewBag.FrendRequestNumbers=userFriendViewModel.Friends.Count;
-                UserFriend_ViewModel userFriendViewModel2 = CountFriendInList();
-                ViewBag.NumberOfFriends = userFriendViewModel2.Friends.Count;
+                CountNotification();
 
                 return View(users);
             }
@@ -111,6 +108,7 @@ namespace SocialCommunicationWebApp.Controllers
 
         public ActionResult FriendRequest()
         {
+            CountNotification();
             if (Session["email"] != null)
             {
                 UserFriend_ViewModel userFriendViewModel = CountFriendRequests();
@@ -122,6 +120,7 @@ namespace SocialCommunicationWebApp.Controllers
 
         public ActionResult FriendsList()
         {
+            CountNotification();
             if (Session["email"] != null)
             {
                 String email = (string) Session["email"];
@@ -251,6 +250,28 @@ namespace SocialCommunicationWebApp.Controllers
                 FromFriendNameList = fromFriendNameList
             };
             return userFriendViewModel;
+        }
+
+        public void CountNotification()
+        {
+            UserFriend_ViewModel userFriendViewModel = CountFriendRequests();
+            ViewBag.FrendRequestNumbers = userFriendViewModel.Friends.Count;
+            UserFriend_ViewModel userFriendViewModel2 = CountFriendInList();
+            ViewBag.NumberOfFriends = userFriendViewModel2.Friends.Count;
+
+            List<Message> messages = _context.Messages.ToList();
+            String email = (string)Session["email"];
+            User user = _context.UsercSet.SingleOrDefault(x => x.Email == email);
+            int count = 0;
+            foreach (Message message in messages)
+            {
+                if ((message.ToId==user.Id) & (message.Seen==0))
+                {
+                    count++;
+                }
+            }
+
+            ViewBag.message = count;
         }
     }
 }

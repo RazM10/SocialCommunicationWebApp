@@ -1,9 +1,15 @@
 ﻿@model SocialCommunicationWebApp.ViewModels.UserCountry_ViewModel
 @{
     ViewBag.Title = "New";
+    Layout = "../Shared/_LayoutUser.cshtml";
 }
 
-<h2>New</h2>
+@section navBarRight{
+    <li>@Html.ActionLink("Register", "New", "User")</li>
+    <li>@Html.ActionLink("Log in", "Login", "User")</li>
+}
+
+<h2>Registration</h2>
 @using (Html.BeginForm("New", "User"))
 {
     <div class="form-group">
@@ -18,7 +24,7 @@
 
     <div class="form-group">
         @Html.LabelFor(x => x.User.Email)
-        @Html.TextBoxFor(x => x.User.Email, new { @class = "form-control",type="email",placeholder="example@gmail.com" })
+        @Html.TextBoxFor(x => x.User.Email, new { @class = "form-control", type = "email", placeholder = "example@gmail.com" })
     </div>
 
     <div class="form-group">

@@ -1,12 +1,19 @@
 ﻿@model IEnumerable<SocialCommunicationWebApp.Models.User>
 @{
     ViewBag.Title = "Index";
+    Layout = "../Shared/_LayoutUser.cshtml";
 }
+
+@*Here start nevbar*@
+@section navBarRight{
+    <li>@Html.ActionLink("Register", "New", "User")</li>
+    <li>@Html.ActionLink("Log in", "Login", "User")</li>
+}
+@*End nevbar*@
+
 
 <h2>Index</h2>
 
-@Html.ActionLink("Registration", "New", "User")
-@Html.ActionLink("Login", "Login", "User")
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
